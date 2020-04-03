@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue_声明式渲染</title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{ message }} {{ name }}
+		</div>
+		
+		<div id="app-2">
+			<span v-bind:title="message">
+				{{ divdata }}
+			</span>
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					message: "Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统",
+					name: "zhangsan"
+				}
+			});
+			
+			app.name = "Felix Zhang";
+			
+			var app2 = new Vue({
+				el:"#app-2",
+				data:{
+					message: "页面加载于 " + new Date().toLocaleString(),
+					divdata: "绑定元素：v-bind attribute 被称为指令。指令带有前缀 v-，以表示它们是 Vue 提供的特殊 attribute"
+				}
+			});
+		</script>
+	</body>
+</html>
