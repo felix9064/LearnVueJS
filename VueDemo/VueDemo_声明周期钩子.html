@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue_声明周期钩子</title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{msg}}</p>
+			<button v-on:click="reverseMessage">反转上面的消息</button>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					msg: "亲成我上马"
+				},
+				
+				// 在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。
+				beforeCreate:function(){
+					console.log("当前调用的是beforeCreate函数");
+				},
+				// 在实例创建完成后被立即调用。
+				// 在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。
+				// 然而，挂载阶段还没开始，$el 属性目前尚不可用。
+				created:function(){
+					console.log("当前调用的是created函数");
+				},
+				
+				// 在挂载开始之前被调用：相关的 render 函数首次被调用。
+				// 该钩子在服务器端渲染期间不被调用。
+				beforeMount:function(){
+					console.log("当前调用的是beforeMount函数");
+				},
+				// 实例被挂载后调用，这时 el 被新创建的 vm.$el 替换了。 
+				// 该钩子在服务器端渲染期间不被调用。
+				mounted:function(){
+					console.log("当前调用的是mounted函数");
+				},
+				
+				// 数据更新时调用。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。
+				beforeUpdate:function(){
+					console.log("当前调用的是beforeUpdate函数");
+				},
+				// 组件DOM已经更新，组件更新完毕
+				updated:function(){
+					console.log("当前调用的是updated函数")
+				},
+				
+				methods:{
+					reverseMessage: function () {
+						this.msg = this.msg.split('').reverse().join('')
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
